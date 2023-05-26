@@ -1,19 +1,51 @@
-import Task from './Task';
+
+import { useState } from 'react';
+
 
 
 function App() {
 
-  const tasks = [
-    'Lavar o carro',
-    'Ir no mercado',
-    'Buscar o cachorro no petshop'
-  ];
-  return <>
-    <h1>TODO List</h1>
-    {tasks.map((value) => {
-      return <p><Task text={value} /></p>;
-    })}
-  </>;
+  const [user, setUser] = useState({});
+
+  function doLogin() {
+    console.log(user);
+
+  }
+
+
+
+  return <div className="container-fluid">
+    <div className="row">
+      <div className="col-3 col-xl-2">
+        <div className="form-group">
+          <label>E-mail</label>
+          <input onChange={(event) => {
+            const value = event.target.value;
+            setUser({
+              ...user,
+              email: value,
+            })
+          }} className="form-control" type="text" />
+        </div>
+        <div className="form-group">
+          <label>Password</label>
+          <input onChange={(event) => {
+            const value = event.target.value;
+            setUser({
+              ...user,
+              password: value,
+            })
+          }} className="form-control" type="password" />
+        </div>
+        <div className="form-group">
+          <button onClick={() => doLogin()} className="btn btn-primary mt-4">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 }
 
 export default App;
